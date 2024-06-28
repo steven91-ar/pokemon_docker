@@ -1,0 +1,22 @@
+version: "3.8"
+services: 
+  api:
+    build: ./api 
+    container_name: api_c
+    ports: 
+    - "3000:3000"
+    volumes:
+      - ./api:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      - PORT=3000
+    command: node app.js
+
+  front:
+    build: ./front
+    container_name: front_c
+    ports:
+      - "3001:3000"
+    environment:
+      - PORT=3000
+    command: node app.js
